@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<com.example.az.myeasemobdemo.chat.EaseChatMessageList
+		android:id="@+id/message_list"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		app:layout_constraintBottom_toTopOf="@+id/llSend"/>
+	
+	<LinearLayout
+		android:id="@+id/llSend"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:orientation="horizontal"
+		app:layout_constraintBottom_toBottomOf="parent">
+		
+		<EditText
+			android:id="@+id/etMessage"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"/>
+		
+		<TextView
+			android:id="@+id/tvSend"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="5dp"
+			android:background="?selectableItemBackground"
+			android:clickable="true"
+			android:padding="4dp"
+			android:text="Send"/>
+	</LinearLayout>
+</android.support.constraint.ConstraintLayout>
