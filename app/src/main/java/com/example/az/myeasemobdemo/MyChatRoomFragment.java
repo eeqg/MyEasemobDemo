@@ -19,6 +19,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.az.myeasemobdemo.chat.EaseAtMessageHelper;
@@ -85,6 +86,9 @@ public class MyChatRoomFragment extends Fragment implements EMMessageListener {
 		// clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
 		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		
+		TextView titleView = this.rootView.findViewById(R.id.title);
+		titleView.setText(chatRoomId);
+		
 		this.messageList = (EaseChatMessageList) getView().findViewById(R.id.message_list);
 		this.swipeRefreshLayout = messageList.getSwipeRefreshLayout();
 		this.listView = messageList.getListView();
@@ -101,6 +105,7 @@ public class MyChatRoomFragment extends Fragment implements EMMessageListener {
 				if (TextUtils.isEmpty(message)) {
 					return;
 				}
+				etMessage.setText(null);
 				sendTextMessage(message);
 			}
 		});
@@ -110,6 +115,7 @@ public class MyChatRoomFragment extends Fragment implements EMMessageListener {
 	 * 加入聊天室
 	 */
 	protected void onChatRoomViewCreation() {
+		Log.d("test_wp", "onChatRoomViewCreation()");
 		final ProgressDialog pd = ProgressDialog.show(getActivity(), "", "Joining......");
 		EMClient.getInstance().chatroomManager().joinChatRoom(chatRoomId, new EMValueCallBack<EMChatRoom>() {
 			
@@ -150,6 +156,7 @@ public class MyChatRoomFragment extends Fragment implements EMMessageListener {
 	}
 	
 	protected void onConversationInit() {
+		Log.d("test_wp", "--onConversationInit()");
 		this.conversation = EMClient.getInstance().chatManager().getConversation(chatRoomId, EMConversation.EMConversationType.ChatRoom, true);
 		conversation.markAllMessagesAsRead();
 		// the number of messages loaded into conversation is getChatOptions().getNumberOfMessagesLoaded
@@ -191,6 +198,7 @@ public class MyChatRoomFragment extends Fragment implements EMMessageListener {
 	}
 	
 	protected void onMessageListInit() {
+		Log.d("test_wp", "--onMessageListInit()--"+Thread.currentThread().getId());
 		messageList.init(chatRoomId, 3, null);
 		// setListItemClickListener();
 		
@@ -328,6 +336,7 @@ public class MyChatRoomFragment extends Fragment implements EMMessageListener {
 	// implement methods in EMMessageListener
 	@Override
 	public void onMessageReceived(List<EMMessage> messages) {
+		Log.d("test_wp", "onMessageReceived()---");
 		for (EMMessage message : messages) {
 			Log.d("test_wp", "onMessageReceived()--" + message.getBody().toString());
 			String username = null;

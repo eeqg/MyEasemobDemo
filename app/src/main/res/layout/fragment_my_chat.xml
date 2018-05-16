@@ -5,11 +5,29 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 	
+	<TextView
+		android:id="@+id/title"
+		android:layout_width="match_parent"
+		android:layout_height="48dp"
+		android:gravity="center"
+		android:textSize="18sp"
+		android:text="title"/>
+	
+	<View
+		android:id="@+id/divider"
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+	    android:background="#CCCCCC"
+		app:layout_constraintTop_toBottomOf="@+id/title"/>
+	
 	<com.example.az.myeasemobdemo.chat.EaseChatMessageList
 		android:id="@+id/message_list"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
-		app:layout_constraintBottom_toTopOf="@+id/llSend"/>
+		android:layout_marginTop="8dp"
+		android:background="@android:color/white"
+		app:layout_constraintBottom_toTopOf="@+id/llSend"
+		app:layout_constraintTop_toBottomOf="@+id/divider"/>
 	
 	<LinearLayout
 		android:id="@+id/llSend"

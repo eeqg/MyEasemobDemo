@@ -72,6 +72,11 @@ public class MainActivity extends AppCompatActivity {
 	}
 	
 	private void login() {
+		if (isLoggedIn()) {
+			EMClient.getInstance().chatManager().loadAllConversations();
+			EMClient.getInstance().groupManager().loadAllGroups();
+			return;
+		}
 		EMClient.getInstance().login("asdfg", "asdfg", new EMCallBack() {
 			
 			@Override
@@ -142,6 +147,15 @@ public class MainActivity extends AppCompatActivity {
 				}
 			}
 		});
+	}
+	
+	/**
+	 * if ever logged in
+	 *
+	 * @return
+	 */
+	public boolean isLoggedIn() {
+		return EMClient.getInstance().isLoggedInBefore();
 	}
 	
 	@Override

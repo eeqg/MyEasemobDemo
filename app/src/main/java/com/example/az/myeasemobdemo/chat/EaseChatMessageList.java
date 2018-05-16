@@ -96,7 +96,7 @@ public class EaseChatMessageList extends RelativeLayout {
      * refresh and jump to the last
      */
     public void refreshSelectLast(){
-	    Log.d("test_wp", "--refreshSelectLast()--");
+	    Log.d("test_wp", "--refreshSelectLast()--"+Thread.currentThread().getId());
         if (messageAdapter != null) {
             messageAdapter.refreshSelectLast();
         }

@@ -17,6 +17,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.support.annotation.MainThread;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -82,6 +84,7 @@ public class EaseMessageAdapter extends BaseAdapter {
 	
 	Handler handler = new Handler() {
 		private void refreshList() {
+			Log.d("test_wp", "--refreshList()--"+Thread.currentThread().getId());
 			// you should not call getAllMessages() in UI thread
 			// otherwise there is problem when refreshing UI and there is new message arrive
 			java.util.List<EMMessage> var = conversation.getAllMessages();
@@ -123,6 +126,7 @@ public class EaseMessageAdapter extends BaseAdapter {
 	 * refresh and select the last
 	 */
 	public void refreshSelectLast() {
+		Log.d("test_wp", "Adapter--refreshSelectLast()--"+ Thread.currentThread().getId());
 		final int TIME_DELAY_REFRESH_SELECT_LAST = 100;
 		handler.removeMessages(HANDLER_MESSAGE_REFRESH_LIST);
 		handler.removeMessages(HANDLER_MESSAGE_SELECT_LAST);
